@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #b42525;
+}
+.wrapper {
+  position: fixed;
+  width: 90%;
+  max-width: 40em;
+  background-color: #ffffff;
+  padding: 7em 3em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  border-radius: 1em;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px 2px black;
+}
+.controls-container {
+  background-color: #b42525;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 0;
+}
+#start {
+  font-size: 1.2em;
+  padding: 1em 3em;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 2em;
+  cursor: pointer;
+}
+#home {
+  font-size: 1.2em;
+  padding: 1em 3em;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 2em;
+  cursor: pointer;
+}
+#letter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8em 0.4em;
+  justify-content: center;
+  margin-top: 2em;
+}
+#letter-container button {
+  background-color: #ffffff;
+  border: 2px solid #07080c;
+  color: #060608;
+  outline: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  height: 3em;
+  width: 3em;
+}
+#letter-container .correct {
+  background-color: #008000;
+  color: #ffffff;
+  border: 2px solid #008000;
+}
+#letter-container .incorrect {
+  background-color: #8a8686;
+  color: #ffffff;
+  border: 2px solid #8a8686;
+}
+.image-container {
+  width: 200px; /* set a fixed width */
+  height: 200px; /* set a fixed height */
+  overflow: hidden; /* hide any parts of the image that exceed the container size */
+}
+
+.image-container img {
+  width: 100%; /* make the image fill the container horizontally */
+  height: 100%; /* make the image fill the container vertically */
+  object-fit: cover; /* scale the image while preserving its aspect ratio */
+}
+
+.hint-ref {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.hint-ref span {
+  font-weight: 600;
+}
+#chanceCount {
+  margin: 4em 0;
+  position: absolute;
+  top: 0.62em;
+  right: 2em;
+}
+#backBtn {
+  margin: 4em 0;
+  position: absolute;
+  top: 0.62em;
+  left: 2em;
+  font-size: 1.0em;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+#word {
+  font-weight: 600;
+  margin: 1em 0 2em 0;
+}
+#word span {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.hide {
+  display: none;
+}
