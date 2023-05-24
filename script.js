@@ -1,17 +1,3 @@
-//Word and Hints Object
-// const options = {
-//   aroma: "Pleasing smell",
-//   pepper: "Salt's partner",
-//   halt: "put a stop to",
-//   jump: "Rise suddenly ",
-//   shuffle: "Mix cards up ",
-//   combine: "Add; Mix",
-//   chaos: "Total disorder",
-//   labyrinth: "Maze",
-//   disturb: "Interrupt; upset ",
-//   shift: "Move; Period of word",
-//   machine: "Device or appliance",
-// };
 
 //Word and Image Object
 const options = {
@@ -27,14 +13,64 @@ const options = {
   mazda: {
     image: "https://i.pinimg.com/originals/eb/b0/3e/ebb03eba30cd4880617d37b28215a31f.jpg",
   }, 
-};
-
-const foodOptions = {
-  honda: {
-    image: "https://passion-stickers.com/575-large_default/honda-logo.jpg",
+  volvo: {
+    image: "https://i.pinimg.com/736x/56/bd/1b/56bd1b0f063981cb53e60c316d2bde91.jpg",
+  },
+  maserati: {
+    image: "https://www.proprofs.com/quiz-school/user_upload/ckeditor/maserati.jpg",
+  },
+  lamborghini: {
+    image: "https://media.baamboozle.com/uploads/images/285729/1654228490_22015_url.jpeg",
+  },
+  ferrari: {
+    image: "https://www.dividapps.com/img/lq/images/q43.jpg",
+  },
+  audi: {
+    image: "https://i.pinimg.com/736x/4c/34/ee/4c34eefba221546293d1032ae967eddc--audi-the-ojays.jpg",
+  },
+  opel: {
+    image: "https://i.pinimg.com/736x/09/98/66/099866a01dfebce569cb79e03a69c86d.jpg",
   },
 };
 
+const foodOptions = {
+  subway: {
+    image: "https://www.logodesignlove.com/images/monograms/subway-monogram-01.jpg",
+  },
+  mcdonalds: {
+    image: "https://logos-world.net/wp-content/uploads/2020/04/McDonalds-Logo.png",
+  },
+  lays: {
+    image: "https://www.logolynx.com/images/logolynx/f9/f9d3e1fa2e03eda3845b12e440cbdc4e.jpeg",
+  },
+  starbucks: {
+    image: "https://manacube.com/attachments/starbucks-jpg.5546/",
+  },
+  dominos: {
+    image: "https://1.bp.blogspot.com/-e5_46NobiP8/TbUEMLkXQDI/AAAAAAAABVA/ynOQxOBvTfs/s1600/logo687.gif",
+  },
+  pizzahut: {
+    image: "https://100-pics.net/images/answers/en/logos/logos_6719_142279.jpeg",
+  }
+};
+
+const corporateOptions = {
+  microsoft: {
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png",
+  },
+  amazon: {
+    image: "https://quizizz.com/media/resource/gs/quizizz-media/quizzes/71d4602b-75af-4d94-bd22-517621b65e15?w=90&h=90",
+  },
+  google: {
+     image: "https://quizizz.com/media/resource/gs/quizizz-media/quizzes/940f318e-d7e6-4277-ae39-0723d02373c7",
+  },
+  apple: {
+    image: "https://adcortex.com/wp-content/uploads/2020/09/Apple-Logo-black-1024x768.png",
+  },
+  meta: {
+    image: "https://pbs.twimg.com/media/FC3qvpsXsAQGGdY.jpg",
+  }
+};
 
 //Initial References
 const message = document.getElementById("message");
@@ -48,8 +84,12 @@ const resultText = document.getElementById("result");
 const word = document.getElementById("word");
 const carBtn = document.getElementById("carBtn");
 const foodBtn = document.getElementById("foodBtn");
+const corporateBtn = document.getElementById("corporateBtn");
 const backBtn = document.getElementById("backBtn");
 car_flag = "false";
+food_flag = "false";
+corporate_flag = "false";
+
 won=0;
 lost=0;
 let randomWord = "",
@@ -70,6 +110,14 @@ for (const word in options) {
 const foodImages = {};
 for (const word in foodOptions) {
   const imagePath = foodOptions[word].image;
+  const image = new Image();
+  image.src = imagePath;
+  images[word] = image;
+}
+
+const corporateImages = {};
+for (const word in corporateOptions) {
+  const imagePath = corporateOptions[word].image;
   const image = new Image();
   image.src = imagePath;
   images[word] = image;
@@ -106,14 +154,14 @@ const blocker = (win) => {
 //Start Game
 startBtn.addEventListener("click", () => {
   controls.classList.add("hide");
+  won=0;
+  lost=0;
   init();
 });
 
 //Stop Game
 const stopGame = () => {
   controls.classList.remove("hide");
-  car_flag = "false";
-  food_flag = "flase";
 };
 
 //Start Car Game
@@ -129,6 +177,12 @@ foodBtn.addEventListener("click", () => {
   init();
 });
 
+corporateBtn.addEventListener("click", () => {
+  controls.classList.add("hide");
+  corporate_flag = "true";
+  init();
+});
+
 backBtn.addEventListener("click", () => {
   // Perform your action here
   usedWords = []; // Reset usedWords array
@@ -141,7 +195,12 @@ backBtn.addEventListener("click", () => {
   carBtn.hidden = false;
   foodBtn.disabled = false;
   foodBtn.hidden = false;
+  corporateBtn.disabled = false;
+  corporateBtn.hidden = false;
   resultText.hidden = true;
+  car_flag = "false";
+  food_flag = "false";
+  corporate_flag = "false"
 });
 
 homeBtn.addEventListener("click", () => {
@@ -153,7 +212,12 @@ homeBtn.addEventListener("click", () => {
   carBtn.hidden = false;
   foodBtn.disabled = false;
   foodBtn.hidden = false;
+  corporateBtn.disabled = false;
+  corporateBtn.hidden = false;
   resultText.hidden = true;
+  car_flag = "false";
+  food_flag = "false";
+  corporate_flag = "false"
 });
 
 //Generate Word Function
@@ -178,6 +242,8 @@ const generateWord = (pictures) => {
   carBtn.hidden = true;
   foodBtn.disabled = true;
   foodBtn.hidden = true;
+  corporateBtn.disabled = true;
+  corporateBtn.hidden = true;
   let lettersButtons = document.querySelectorAll(".letters");
   return;
 }
@@ -220,14 +286,19 @@ const init = () => {
   userInpSection.innerHTML = "";
   letterContainer.classList.add("hide");
   letterContainer.innerHTML = "";
+  
   if (car_flag === "true")
   {
-  words = Object.keys(options);
-  generateWord(images);
+    words = Object.keys(options);
+    generateWord(images);
   }
   else if (food_flag === "true") {
-  words = Object.keys(foodOptions);
-  generateWord(foodImages);
+    words = Object.keys(foodOptions);
+    generateWord(foodImages);
+  }
+  else if (corporate_flag === "true") {
+    words = Object.keys(corporateOptions);
+    generateWord(corporateImages);
   }
 
   //For creating letter buttons
