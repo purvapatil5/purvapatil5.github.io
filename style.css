@@ -225,7 +225,7 @@ body {
 
     .winning-gif {
         position: absolute;
-        top: 88%;
+        bottom: 0;
         left: 38%;
         width: 100px;
         height: 75px;
