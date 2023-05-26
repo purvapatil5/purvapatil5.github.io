@@ -1,31 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logo Dash</title>
-  <link rel="stylesheet" href="loginpg.css">
-  <script defer src="login_script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Dash</title>
+    <link rel="stylesheet" href="loginpage.css">
+    <script defer src="login_script.js"></script>
 </head>
 
 <body>
-  <main id="main-holder">
-    <img id="logo" src="Logo.png" style="position:absolute;top:0;width:500px;height:300px;overflow: hidden;">
-    
+<img id="logo" src="logo.png" alt="Logo"
+     style="position:absolute;top:10%;width:375px;height:100px;overflow: hidden;">
+<main id="main-holder">
     <div id="login-error-msg-holder">
-      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
     </div>
     <div id="login-header">Login</div>
     <form id="login-form">
-      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
-      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-      <input type="submit" value="Login" id="login-form-submit">
-      <input type="submit" value="Create Account" id="createAccBtn">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+        <input type="submit" value="Login" id="login-form-submit">
+        <input type="submit" value="Create Account" id="createAccBtn">
     </form>
-  
-  </main>
+</main>
 </body>
 
 </html>
