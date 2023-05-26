@@ -328,7 +328,7 @@ const init = () => {
                             //startBtn.innerText = "Restart";
                             won++;
                             //block all buttons
-                            showWinningMessage();
+                            showWinningMessage("won");
                             blocker();
                         }
                     }
@@ -346,7 +346,7 @@ const init = () => {
                     word.innerHTML = `The word was: <span>${randomWord}</span>`;
                     resultText.innerHTML = "Game Over";
                     lost++;
-                    showLosingMessage();
+                    showWinningMessage("lost");
                     blocker();
                 }
             }
@@ -365,31 +365,18 @@ window.onload = () => {
 };
 
 // Function to show winning message and display GIF for 3 seconds
-function showWinningMessage() {
-    message.innerText = 'You Won. Congratulations!';
+function showWinningMessage(result) {
     const randomImageNumber = Math.floor(Math.random() * 8) + 1;
     // Create img element for the GIF
     const gifImage = document.createElement('img');
-    gifImage.src = `images/kitty${randomImageNumber}.gif`;
+    if (result === 'won') {
+        message.innerText = 'You Won. Congratulations!';
+        gifImage.src = `images/kitty${randomImageNumber}.gif`;
+    } else if (result === 'lost') {
+        message.innerText = 'You Lost. Try next one...';
+        gifImage.src = `images/kittyy${randomImageNumber}.gif`;
+    }
     gifImage.classList.add('winning-gif');
-
-    // Append the GIF image to the document body
-    document.body.appendChild(gifImage);
-
-    // Remove the GIF image after 3 seconds
-    setTimeout(() => {
-        gifImage.remove();
-    }, 3000);
-}
-
-// Function to show winning message and display GIF for 3 seconds
-function showLosingMessage() {
-    message.innerText = 'You Lost. Try Again...';
-    const randomImageNumber = Math.floor(Math.random() * 8) + 1;
-    // Create img element for the GIF
-    const gifImage = document.createElement('img');
-    gifImage.src = `images/kittyy${randomImageNumber}.gif`;
-    gifImage.classList.add('losing-gif');
 
     // Append the GIF image to the document body
     document.body.appendChild(gifImage);
